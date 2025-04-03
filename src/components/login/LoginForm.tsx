@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FormInput } from "./FormInput";
@@ -26,17 +25,10 @@ export const LoginForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="w-full">
-        <div className="w-full">
-          <div className="w-full text-center mb-6">
-            <img
-              src="/lovable-uploads/eeea6472-2307-4c20-91e0-98454d21ba1f.png"
-              alt="Escort Service"
-              className="w-16 h-16 mx-auto mb-2"
-            />
-            <h1 className="text-[28px] text-[#222] font-bold">
-              Escort Request Form
-            </h1>
+      <div className="bg-[rgba(252,251,254,1)] min-h-[423px] w-full text-[#22142e] font-normal tracking-[-0.09px]">
+        <div className="w-full py-12">
+          <div className="bg-[rgba(252,251,254,1)] w-full text-[28px] text-[rgba(33,27,40,1)] font-bold text-center tracking-[-0.56px]">
+            <div className="w-full pt-6 pb-4 px-4">Escort Request Form</div>
           </div>
 
           <FormInput
