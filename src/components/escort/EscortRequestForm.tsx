@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { VehiclePostSection } from "./VehiclePostSection";
 import { DriverInfoSection } from "./DriverInfoSection";
@@ -68,16 +67,16 @@ export const EscortRequestForm: React.FC = () => {
           <h1 className="text-[22px] font-bold text-[#333]">Escort Request Form</h1>
         </div>
         
-        <div className="px-6 py-4 bg-[#E6DFEC]">
-          <div className="bg-white rounded-lg p-4 mb-6 shadow-sm">
+        <div className="px-6 py-4 bg-white">
+          <div className="bg-[#F5F2F7] rounded-lg p-4 mb-6 shadow-sm">
             <VehiclePostSection />
           </div>
           
-          <div className="bg-white rounded-lg p-4 mb-6 shadow-sm">
+          <div className="bg-[#F5F2F7] rounded-lg p-4 mb-6 shadow-sm">
             <DriverInfoSection />
           </div>
           
-          <div className="bg-white rounded-lg p-4 mb-6 shadow-sm">
+          <div className="bg-[#F5F2F7] rounded-lg p-4 mb-6 shadow-sm">
             <PersonBeingEscortedSection 
               personSections={personSections}
               onAddPerson={addPersonSection}
@@ -86,11 +85,11 @@ export const EscortRequestForm: React.FC = () => {
             />
           </div>
           
-          <div className="bg-white rounded-lg p-4 mb-6 shadow-sm">
+          <div className="bg-[#F5F2F7] rounded-lg p-4 mb-6 shadow-sm">
             <ProhibitedItemsSection />
           </div>
           
-          <div className="bg-white rounded-lg p-4 mb-6 shadow-sm">
+          <div className="bg-[#F5F2F7] rounded-lg p-4 mb-6 shadow-sm">
             <VehicleInfoSection />
           </div>
           

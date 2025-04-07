@@ -25,7 +25,7 @@ export const DatePickerInput = React.forwardRef<HTMLInputElement, DatePickerInpu
                 value={date ? format(date, "MM/dd/yyyy") : ""}
                 placeholder={placeholder || "MM/DD/YYYY"}
                 className={cn(
-                  "w-full px-3 py-2 bg-[#F4F0F9] rounded-md",
+                  "w-full px-3 py-2 bg-[#E6DFEC] rounded-md",
                   "placeholder:text-gray-500 text-sm cursor-pointer",
                   "focus:outline-none focus:ring-2 focus:ring-[#663399]",
                   className,

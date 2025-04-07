@@ -13,7 +13,7 @@ export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
         <input
           ref={ref}
           className={cn(
-            "w-full px-3 py-2 bg-[#F4F0F9] rounded-md",
+            "w-full px-3 py-2 bg-[#E6DFEC] rounded-md",
             "placeholder:text-gray-500 text-sm",
             "focus:outline-none focus:ring-2 focus:ring-[#663399]",
             className,

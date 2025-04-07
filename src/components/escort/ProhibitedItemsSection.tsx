@@ -24,7 +24,7 @@ export const ProhibitedItemsSection: React.FC = () => {
         <textarea
           name="comments"
           rows={3}
-          className="w-full p-2 bg-[#F4F0F9] border border-gray-300 rounded-md"
+          className="w-full p-2 bg-[#E6DFEC] border border-gray-300 rounded-md"
           placeholder="Comments"
         ></textarea>
       </div>
