@@ -1,21 +1,31 @@
 
 import React from "react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export const FormButtons: React.FC = () => {
+  const navigate = useNavigate();
+  
+  const handleSubmit = () => {
+    // Navigate to the success page after submission
+    navigate("/success");
+  };
+  
   return (
-    <div className="grid grid-cols-2 gap-4">
-      <button
-        type="button"
-        className="w-full py-3 bg-[#C12E24] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+    <div className="flex flex-col md:flex-row gap-4 justify-end">
+      <Button 
+        variant="outline" 
+        className="border-[#663399] text-[#663399] hover:bg-[#F5F2F7]"
       >
-        Cancel
-      </button>
-      <button
+        Save Draft
+      </Button>
+      <Button 
         type="submit"
-        className="w-full py-3 bg-[#663399] text-white font-medium rounded-md hover:bg-[#532574] transition-colors"
+        onClick={handleSubmit}
+        className="bg-[#663399] hover:bg-[#4A2272] text-white"
       >
         Submit
-      </button>
+      </Button>
     </div>
   );
 };
