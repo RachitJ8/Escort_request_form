@@ -3,7 +3,7 @@ import React from "react";
 
 export const ProhibitedItemsSection: React.FC = () => {
   return (
-    <div className="bg-[#F4F0F9] rounded-lg p-4">
+    <div>
       <div className="mb-2">
         <h3 className="text-[#663399] text-sm font-medium">
           Prohibited Items<span className="text-red-500">*</span>

@@ -29,7 +29,7 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
   onUpdateData,
 }) => {
   return (
-    <div className="bg-[#FAF8FC] rounded-lg">
+    <div>
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-[#663399] font-medium text-lg">Person Being Escorted</h2>
         <button
@@ -64,6 +64,16 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
               </div>
             ) : (
               <div className="space-y-3">
+                <div className="flex items-center justify-end">
+                  <button
+                    type="button"
+                    onClick={() => onToggleCollapse(person.id)}
+                    className="text-[#663399]"
+                  >
+                    <ChevronUp size={20} />
+                  </button>
+                </div>
+                
                 <div className="flex items-center">
                   <div className="w-1/2">
                     <label className="block text-[#663399] text-sm">

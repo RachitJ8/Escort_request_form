@@ -62,20 +62,22 @@ export const EscortRequestForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-[20px] overflow-hidden">
+    <div className="max-w-md mx-auto bg-white rounded-[20px] overflow-hidden shadow-md">
       <form onSubmit={handleSubmit}>
         <div className="bg-[#F4F0F9] py-4 px-6 text-center">
           <h1 className="text-[22px] font-bold text-[#333]">Escort Request Form</h1>
         </div>
         
-        <div className="px-6 py-4 bg-[#FAF8FC]">
-          <VehiclePostSection />
+        <div className="px-6 py-4 bg-[#E6DFEC]">
+          <div className="bg-white rounded-lg p-4 mb-6 shadow-sm">
+            <VehiclePostSection />
+          </div>
           
-          <div className="mt-6">
+          <div className="bg-white rounded-lg p-4 mb-6 shadow-sm">
             <DriverInfoSection />
           </div>
           
-          <div className="mt-6">
+          <div className="bg-white rounded-lg p-4 mb-6 shadow-sm">
             <PersonBeingEscortedSection 
               personSections={personSections}
               onAddPerson={addPersonSection}
@@ -84,11 +86,11 @@ export const EscortRequestForm: React.FC = () => {
             />
           </div>
           
-          <div className="mt-6">
+          <div className="bg-white rounded-lg p-4 mb-6 shadow-sm">
             <ProhibitedItemsSection />
           </div>
           
-          <div className="mt-6">
+          <div className="bg-white rounded-lg p-4 mb-6 shadow-sm">
             <VehicleInfoSection />
           </div>
           

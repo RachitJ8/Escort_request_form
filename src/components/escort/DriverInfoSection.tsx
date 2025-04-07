@@ -7,7 +7,7 @@ import { PhoneInput } from "./PhoneInput";
 
 export const DriverInfoSection: React.FC = () => {
   return (
-    <div className="bg-[#FAF8FC] rounded-lg">
+    <div>
       <h2 className="text-[#663399] font-medium text-center text-lg mb-4">Escort Driver Information</h2>
       
       <div className="space-y-3">

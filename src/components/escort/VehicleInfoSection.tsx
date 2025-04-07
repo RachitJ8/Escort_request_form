@@ -1,4 +1,3 @@
-
 import React from "react";
 import { FormInput } from "./FormInput";
 import { FormSelect } from "./FormSelect";
@@ -8,7 +7,7 @@ import { Label } from "@/components/ui/label";
 
 export const VehicleInfoSection: React.FC = () => {
   return (
-    <div className="bg-[#FAF8FC] rounded-lg">
+    <div>
       <h2 className="text-[#663399] font-medium text-center text-lg mb-4">Vehicle Information</h2>
       
       <div className="space-y-3">
