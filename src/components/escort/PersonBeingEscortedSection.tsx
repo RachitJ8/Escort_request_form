@@ -20,6 +20,7 @@ interface PersonSectionProps {
   onAddPerson: () => void;
   onToggleCollapse: (id: string) => void;
   onUpdateData: (id: string, data: any) => void;
+  addButtonDisabled: boolean;
 }
 
 export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
@@ -27,6 +28,7 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
   onAddPerson,
   onToggleCollapse,
   onUpdateData,
+  addButtonDisabled
 }) => {
   return (
     <div className="mb-6">
@@ -35,7 +37,10 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
         <button
           type="button"
           onClick={onAddPerson}
-          className="bg-[#663399] text-white rounded-md px-3 py-1 text-sm font-medium"
+          disabled={addButtonDisabled}
+          className={`bg-[#663399] text-white rounded-md px-3 py-1 text-sm font-medium ${
+            addButtonDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#4A2272]'
+          }`}
         >
           Add Person
         </button>
