@@ -294,44 +294,34 @@ export const EscortRequestForm: React.FC = () => {
         </div>
         
         <div className="px-6 py-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="col-span-1">
-              <VehicleSection />
-              
-              <div className="mt-8">
-                <EscortInformationSection 
-                  escortSections={escortSections}
-                  onAddEscort={addEscortSection}
-                  onToggleCollapse={toggleEscortCollapse}
-                  onUpdateData={updateEscortData}
-                  addButtonDisabled={escortIncomplete}
-                />
-              </div>
-            </div>
-          
-            <div className="col-span-1">
-              <VehicleInformationSection 
-                vehicleSections={vehicleSections}
-                onAddVehicle={addVehicleSection}
-                onToggleCollapse={toggleVehicleCollapse}
-                onUpdateData={updateVehicleData}
-                addButtonDisabled={vehicleIncomplete}
-              />
-            </div>
-          
-            <div className="col-span-1">
-              <ProhibitedItemsSection />
-              
-              <div className="mt-8">
-                <PersonBeingEscortedSection 
-                  personSections={personSections}
-                  onAddPerson={addPersonSection}
-                  onToggleCollapse={togglePersonCollapse}
-                  onUpdateData={updatePersonData}
-                  addButtonDisabled={personIncomplete}
-                />
-              </div>
-            </div>
+          <div className="space-y-6">
+            <VehicleSection />
+            
+            <EscortInformationSection 
+              escortSections={escortSections}
+              onAddEscort={addEscortSection}
+              onToggleCollapse={toggleEscortCollapse}
+              onUpdateData={updateEscortData}
+              addButtonDisabled={escortIncomplete}
+            />
+            
+            <VehicleInformationSection 
+              vehicleSections={vehicleSections}
+              onAddVehicle={addVehicleSection}
+              onToggleCollapse={toggleVehicleCollapse}
+              onUpdateData={updateVehicleData}
+              addButtonDisabled={vehicleIncomplete}
+            />
+            
+            <ProhibitedItemsSection />
+            
+            <PersonBeingEscortedSection 
+              personSections={personSections}
+              onAddPerson={addPersonSection}
+              onToggleCollapse={togglePersonCollapse}
+              onUpdateData={updatePersonData}
+              addButtonDisabled={personIncomplete}
+            />
           </div>
           
           <div className="mt-8">
