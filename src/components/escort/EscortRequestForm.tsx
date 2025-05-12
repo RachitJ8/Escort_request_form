@@ -295,33 +295,43 @@ export const EscortRequestForm: React.FC = () => {
         
         <div className="px-6 py-4">
           <div className="space-y-6">
-            <VehicleSection />
+            <div className="bg-white p-4 rounded-lg shadow-sm">
+              <VehicleSection />
+            </div>
             
-            <EscortInformationSection 
-              escortSections={escortSections}
-              onAddEscort={addEscortSection}
-              onToggleCollapse={toggleEscortCollapse}
-              onUpdateData={updateEscortData}
-              addButtonDisabled={escortIncomplete}
-            />
+            <div className="bg-white p-4 rounded-lg shadow-sm">
+              <EscortInformationSection 
+                escortSections={escortSections}
+                onAddEscort={addEscortSection}
+                onToggleCollapse={toggleEscortCollapse}
+                onUpdateData={updateEscortData}
+                addButtonDisabled={escortIncomplete}
+              />
+            </div>
             
-            <VehicleInformationSection 
-              vehicleSections={vehicleSections}
-              onAddVehicle={addVehicleSection}
-              onToggleCollapse={toggleVehicleCollapse}
-              onUpdateData={updateVehicleData}
-              addButtonDisabled={vehicleIncomplete}
-            />
+            <div className="bg-white p-4 rounded-lg shadow-sm">
+              <VehicleInformationSection 
+                vehicleSections={vehicleSections}
+                onAddVehicle={addVehicleSection}
+                onToggleCollapse={toggleVehicleCollapse}
+                onUpdateData={updateVehicleData}
+                addButtonDisabled={vehicleIncomplete}
+              />
+            </div>
             
-            <ProhibitedItemsSection />
+            <div className="bg-white p-4 rounded-lg shadow-sm">
+              <ProhibitedItemsSection />
+            </div>
             
-            <PersonBeingEscortedSection 
-              personSections={personSections}
-              onAddPerson={addPersonSection}
-              onToggleCollapse={togglePersonCollapse}
-              onUpdateData={updatePersonData}
-              addButtonDisabled={personIncomplete}
-            />
+            <div className="bg-white p-4 rounded-lg shadow-sm">
+              <PersonBeingEscortedSection 
+                personSections={personSections}
+                onAddPerson={addPersonSection}
+                onToggleCollapse={togglePersonCollapse}
+                onUpdateData={updatePersonData}
+                addButtonDisabled={personIncomplete}
+              />
+            </div>
           </div>
           
           <div className="mt-8">
