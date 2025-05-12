@@ -29,8 +29,8 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
   onUpdateData,
 }) => {
   return (
-    <div>
-      <div className="flex items-center justify-between mb-4">
+    <div className="mb-6">
+      <div className="flex justify-between items-center mb-4">
         <h2 className="text-[#663399] font-medium text-lg">Person Being Escorted</h2>
         <button
           type="button"
@@ -148,6 +148,36 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
                 <div className="flex items-center">
                   <div className="w-1/2">
                     <label className="block text-[#663399] text-sm">
+                      Escorted By<span className="text-red-500">*</span>
+                    </label>
+                  </div>
+                  <div className="w-1/2">
+                    <FormSelect 
+                      name={`${person.id}-escort`}
+                      options={[]} 
+                      placeholder="Select Escort"
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <div className="w-1/2">
+                    <label className="block text-[#663399] text-sm">
+                      Vehicle<span className="text-red-500">*</span>
+                    </label>
+                  </div>
+                  <div className="w-1/2">
+                    <FormSelect 
+                      name={`${person.id}-vehicle`}
+                      options={[]} 
+                      placeholder="Select Vehicle"
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex items-center">
+                  <div className="w-1/2">
+                    <label className="block text-[#663399] text-sm">
                       Reason for visit<span className="text-red-500">*</span>
                     </label>
                   </div>
@@ -195,7 +225,11 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
                     </label>
                   </div>
                   <div className="w-1/2">
-                    <FormInput name={`${person.id}-idNumber`} placeholder="12312434532" />
+                    <FormInput 
+                      defaultValue="1231243532"
+                      name={`${person.id}-idNumber`} 
+                      placeholder="12312434532" 
+                    />
                   </div>
                 </div>
                 
@@ -228,21 +262,6 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
                 <div className="flex items-center">
                   <div className="w-1/2">
                     <label className="block text-[#663399] text-sm">
-                      Status<span className="text-red-500">*</span>
-                    </label>
-                  </div>
-                  <div className="w-1/2">
-                    <FormSelect 
-                      name={`${person.id}-status`}
-                      options={[]} 
-                      placeholder="Select Status"
-                    />
-                  </div>
-                </div>
-                
-                <div className="flex items-center">
-                  <div className="w-1/2">
-                    <label className="block text-[#663399] text-sm">
                       Upload Document Image<span className="text-red-500">*</span>
                     </label>
                   </div>
@@ -251,7 +270,7 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
                       type="button"
                       className="bg-[#663399] text-white rounded-md px-4 py-1.5 text-sm"
                     >
-                      Capture
+                      Upload
                     </button>
                   </div>
                 </div>
@@ -319,6 +338,36 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
           <div className="flex items-center">
             <div className="w-1/2">
               <label className="block text-[#663399] text-sm">
+                Escorted By<span className="text-red-500">*</span>
+              </label>
+            </div>
+            <div className="w-1/2">
+              <FormSelect 
+                name="escort"
+                options={[]} 
+                placeholder="Select Escort"
+              />
+            </div>
+          </div>
+          
+          <div className="flex items-center">
+            <div className="w-1/2">
+              <label className="block text-[#663399] text-sm">
+                Vehicle<span className="text-red-500">*</span>
+              </label>
+            </div>
+            <div className="w-1/2">
+              <FormSelect 
+                name="vehicle"
+                options={[]} 
+                placeholder="Select Vehicle"
+              />
+            </div>
+          </div>
+          
+          <div className="flex items-center">
+            <div className="w-1/2">
+              <label className="block text-[#663399] text-sm">
                 Reason for visit<span className="text-red-500">*</span>
               </label>
             </div>
@@ -364,7 +413,7 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
               </label>
             </div>
             <div className="w-1/2">
-              <FormInput name="idNumber" placeholder="12312434532" />
+              <FormInput defaultValue="1231243532" name="idNumber" placeholder="12312434532" />
             </div>
           </div>
           
@@ -397,21 +446,6 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
           <div className="flex items-center">
             <div className="w-1/2">
               <label className="block text-[#663399] text-sm">
-                Status<span className="text-red-500">*</span>
-              </label>
-            </div>
-            <div className="w-1/2">
-              <FormSelect 
-                name="status"
-                options={[]} 
-                placeholder="Select Status"
-              />
-            </div>
-          </div>
-          
-          <div className="flex items-center">
-            <div className="w-1/2">
-              <label className="block text-[#663399] text-sm">
                 Upload Document Image<span className="text-red-500">*</span>
               </label>
             </div>
@@ -420,7 +454,7 @@ export const PersonBeingEscortedSection: React.FC<PersonSectionProps> = ({
                 type="button"
                 className="bg-[#663399] text-white rounded-md px-4 py-1.5 text-sm"
               >
-                Capture
+                Upload
               </button>
             </div>
           </div>

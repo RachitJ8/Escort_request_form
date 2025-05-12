@@ -1,9 +1,10 @@
+
 import React, { useState } from "react";
-import { VehiclePostSection } from "./VehiclePostSection";
-import { DriverInfoSection } from "./DriverInfoSection";
-import { PersonBeingEscortedSection } from "./PersonBeingEscortedSection";
+import { VehicleSection } from "./VehicleSection";
+import { EscortInformationSection } from "./EscortInformationSection";
+import { VehicleInformationSection } from "./VehicleInformationSection";
 import { ProhibitedItemsSection } from "./ProhibitedItemsSection";
-import { VehicleInfoSection } from "./VehicleInfoSection";
+import { PersonBeingEscortedSection } from "./PersonBeingEscortedSection";
 import { FormButtons } from "./FormButtons";
 
 export const EscortRequestForm: React.FC = () => {
@@ -61,37 +62,27 @@ export const EscortRequestForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-[20px] overflow-hidden shadow-md">
+    <div className="max-w-md mx-auto bg-[#F5F2F7] rounded-[20px] overflow-hidden shadow-md">
       <form onSubmit={handleSubmit}>
         <div className="bg-[#F4F0F9] py-4 px-6 text-center">
           <h1 className="text-[22px] font-bold text-[#333]">Escort Request Form</h1>
         </div>
         
-        <div className="px-6 py-4 bg-white">
-          <div className="bg-[#F5F2F7] rounded-lg p-4 mb-6 shadow-sm">
-            <VehiclePostSection />
-          </div>
+        <div className="px-6 py-4">
+          <VehicleSection />
           
-          <div className="bg-[#F5F2F7] rounded-lg p-4 mb-6 shadow-sm">
-            <DriverInfoSection />
-          </div>
+          <EscortInformationSection />
           
-          <div className="bg-[#F5F2F7] rounded-lg p-4 mb-6 shadow-sm">
-            <PersonBeingEscortedSection 
-              personSections={personSections}
-              onAddPerson={addPersonSection}
-              onToggleCollapse={toggleCollapse}
-              onUpdateData={updatePersonData}
-            />
-          </div>
+          <VehicleInformationSection />
           
-          <div className="bg-[#F5F2F7] rounded-lg p-4 mb-6 shadow-sm">
-            <ProhibitedItemsSection />
-          </div>
+          <ProhibitedItemsSection />
           
-          <div className="bg-[#F5F2F7] rounded-lg p-4 mb-6 shadow-sm">
-            <VehicleInfoSection />
-          </div>
+          <PersonBeingEscortedSection 
+            personSections={personSections}
+            onAddPerson={addPersonSection}
+            onToggleCollapse={toggleCollapse}
+            onUpdateData={updatePersonData}
+          />
           
           <div className="mt-8">
             <FormButtons />

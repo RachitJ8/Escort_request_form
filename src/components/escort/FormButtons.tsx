@@ -12,12 +12,12 @@ export const FormButtons: React.FC = () => {
   };
   
   return (
-    <div className="flex flex-col md:flex-row gap-4 justify-end">
+    <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:gap-4 md:justify-between">
       <Button 
         variant="outline" 
-        className="border-[#663399] text-[#663399] hover:bg-[#F5F2F7]"
+        className="border-[#C12E24] bg-[#C12E24] text-white hover:bg-[#A61D13] hover:text-white"
       >
-        Save Draft
+        Cancel
       </Button>
       <Button 
         type="submit"

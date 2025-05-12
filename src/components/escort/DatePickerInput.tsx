@@ -8,11 +8,20 @@ import { format } from "date-fns";
 
 interface DatePickerInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
+  defaultValue?: string;
 }
 
 export const DatePickerInput = React.forwardRef<HTMLInputElement, DatePickerInputProps>(
-  ({ className, placeholder, error, ...props }, ref) => {
-    const [date, setDate] = React.useState<Date>();
+  ({ className, placeholder, error, defaultValue, ...props }, ref) => {
+    const [date, setDate] = React.useState<Date | undefined>(() => {
+      if (defaultValue) {
+        const dateParts = defaultValue.split('/');
+        if (dateParts.length === 3) {
+          return new Date(`${dateParts[0]}/${dateParts[1]}/${dateParts[2]}`);
+        }
+      }
+      return undefined;
+    });
     
     return (
       <div className="w-full">
@@ -22,7 +31,7 @@ export const DatePickerInput = React.forwardRef<HTMLInputElement, DatePickerInpu
               <input
                 ref={ref}
                 readOnly
-                value={date ? format(date, "MM/dd/yyyy") : ""}
+                value={date ? format(date, "MM/dd/yyyy") : defaultValue || ""}
                 placeholder={placeholder || "MM/DD/YYYY"}
                 className={cn(
                   "w-full px-3 py-2 bg-[#E6DFEC] rounded-md",
