@@ -8,7 +8,7 @@ export const FormButtons: React.FC = () => {
   
   const handleCancel = () => {
     // You might want to add a confirmation dialog here
-    navigate("/");
+    navigate("/form-select");
   };
   
   const handleSubmit = () => {
