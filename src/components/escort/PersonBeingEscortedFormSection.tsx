@@ -224,39 +224,76 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             <FormFieldWrapper label="First Name" required>
-              <FormInput name="newPersonFirstName" placeholder="First Name" />
+              <FormInput 
+                name="newPersonFirstName" 
+                placeholder="First Name"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Last Name" required>
-              <FormInput name="newPersonLastName" placeholder="Last Name" />
+              <FormInput 
+                name="newPersonLastName" 
+                placeholder="Last Name"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Date of Birth" required>
-              <DatePickerInput name="newPersonDob" placeholder="MM/DD/YYYY" />
+              <DatePickerInput 
+                name="newPersonDob" 
+                placeholder="MM/DD/YYYY"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Phone" required>
-              <PhoneInput name="newPersonPhone" placeholder="Phone Number" />
+              <PhoneInput 
+                name="newPersonPhone" 
+                placeholder="Phone Number"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Email" required>
-              <FormInput name="newPersonEmail" placeholder="Email" type="email" />
+              <FormInput 
+                name="newPersonEmail" 
+                placeholder="Email" 
+                type="email"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Reason for visit" required>
-              <FormInput name="newReasonForVisit" placeholder="Reason" />
+              <FormInput 
+                name="newReasonForVisit" 
+                placeholder="Reason"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Company" required>
-              <FormSelect options={[]} placeholder="Select company" />
+              <FormSelect 
+                options={[]} 
+                placeholder="Select company"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Type of ID" required>
-              <FormSelect options={[]} placeholder="Select ID" />
+              <FormSelect 
+                options={[]} 
+                placeholder="Select ID"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="ID #" required>
-              <FormInput name="newIdNumber" placeholder="ID Number" />
+              <FormInput 
+                name="newIdNumber" 
+                placeholder="ID Number"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <div className="lg:col-span-3">
@@ -266,6 +303,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
                   rows={3}
                   className="w-full p-2 bg-[#E6DFEC] border-0 rounded-md text-sm"
                   placeholder="Enter"
+                  onChange={() => {}} 
                 ></textarea>
               </FormFieldWrapper>
             </div>

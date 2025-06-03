@@ -203,31 +203,60 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             <FormFieldWrapper label="First Name" required>
-              <FormInput name="newFirstName" placeholder="First Name" />
+              <FormInput 
+                name="newFirstName" 
+                placeholder="First Name"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Last Name" required>
-              <FormInput name="newLastName" placeholder="Last Name" />
+              <FormInput 
+                name="newLastName" 
+                placeholder="Last Name"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Badge Number" required>
-              <FormInput name="newBadgeNumber" placeholder="Badge Number" />
+              <FormInput 
+                name="newBadgeNumber" 
+                placeholder="Badge Number"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Date of Birth" required>
-              <DatePickerInput name="newDob" placeholder="MM/DD/YYYY" />
+              <DatePickerInput 
+                name="newDob" 
+                placeholder="MM/DD/YYYY"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Phone" required>
-              <PhoneInput name="newPhone" placeholder="Phone Number" />
+              <PhoneInput 
+                name="newPhone" 
+                placeholder="Phone Number"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Email" required>
-              <FormInput name="newEmail" placeholder="Email" type="email" />
+              <FormInput 
+                name="newEmail" 
+                placeholder="Email" 
+                type="email"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Company" required>
-              <FormSelect options={[]} placeholder="Select company" />
+              <FormSelect 
+                options={[]} 
+                placeholder="Select company"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
             
             <FormFieldWrapper label='"E" icon' required>
@@ -237,11 +266,16 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
                   { value: "No", label: "No" }
                 ]} 
                 placeholder="Select"
+                onChange={() => {}} 
               />
             </FormFieldWrapper>
             
             <FormFieldWrapper label="Location escorted to" required>
-              <FormInput name="newLocationEscortedTo" placeholder="Enter" />
+              <FormInput 
+                name="newLocationEscortedTo" 
+                placeholder="Enter"
+                onChange={() => {}} 
+              />
             </FormFieldWrapper>
           </div>
         </div>
