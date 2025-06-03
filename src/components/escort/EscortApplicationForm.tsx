@@ -7,10 +7,16 @@ import { PhoneInput } from "./PhoneInput";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export const EscortApplicationForm: React.FC = () => {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+  
+  const [escortCollapsed, setEscortCollapsed] = useState(false);
+  const [personCollapsed, setPersonCollapsed] = useState(false);
+  const [showNewEscortForm, setShowNewEscortForm] = useState(false);
+  const [showNewPersonForm, setShowNewPersonForm] = useState(false);
   
   const [formData, setFormData] = useState({
     firstName: "Rachit",
@@ -45,6 +51,16 @@ export const EscortApplicationForm: React.FC = () => {
   const handleSubmit = () => {
     console.log("Form submitted:", formData);
     navigate("/success");
+  };
+
+  const handleAddEscort = () => {
+    setEscortCollapsed(true);
+    setShowNewEscortForm(true);
+  };
+
+  const handleAddPerson = () => {
+    setPersonCollapsed(true);
+    setShowNewPersonForm(true);
   };
 
   const FormField: React.FC<{
@@ -87,102 +103,176 @@ export const EscortApplicationForm: React.FC = () => {
             {/* Escort Information Section */}
             <div className="bg-white p-4 rounded-lg shadow-sm">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-[#663399] font-medium text-lg">Escort Information</h2>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-[#663399] font-medium text-lg">Escort Information</h2>
+                  {escortCollapsed && (
+                    <button
+                      type="button"
+                      onClick={() => setEscortCollapsed(false)}
+                      className="text-[#663399]"
+                    >
+                      {escortCollapsed ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+                    </button>
+                  )}
+                </div>
                 <button
                   type="button"
+                  onClick={handleAddEscort}
                   className="bg-[#663399] text-white rounded-md px-3 py-1 text-sm font-medium hover:bg-[#4A2272]"
                 >
                   Add Escort
                 </button>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-                <FormField label="First Name" required>
-                  <FormInput 
-                    value={formData.firstName}
-                    onChange={(e) => handleInputChange('firstName', e.target.value)}
-                    name="firstName" 
-                    placeholder="Rachit" 
-                  />
-                </FormField>
-                
-                <FormField label="Last Name" required>
-                  <FormInput 
-                    value={formData.lastName}
-                    onChange={(e) => handleInputChange('lastName', e.target.value)}
-                    name="lastName" 
-                    placeholder="Jain" 
-                  />
-                </FormField>
-                
-                <FormField label="Badge Number" required>
-                  <FormInput 
-                    value={formData.badgeNumber}
-                    onChange={(e) => handleInputChange('badgeNumber', e.target.value)}
-                    name="badgeNumber" 
-                    placeholder="12346578" 
-                  />
-                </FormField>
-                
-                <FormField label="Date of Birth" required>
-                  <DatePickerInput 
-                    value={formData.dob}
-                    onChange={(value) => handleInputChange('dob', value)}
-                    name="dob" 
-                    placeholder="12/08/1997" 
-                  />
-                </FormField>
-                
-                <FormField label="Phone" required>
-                  <PhoneInput 
-                    value={formData.phone}
-                    onChange={(value) => handleInputChange('phone', value)}
-                    name="phone" 
-                    placeholder="7550169223" 
-                  />
-                </FormField>
-                
-                <FormField label="Email" required>
-                  <FormInput 
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    name="email" 
-                    placeholder="rjain@lawa.org" 
-                    type="email" 
-                  />
-                </FormField>
-                
-                <FormField label="Company" required>
-                  <FormSelect 
-                    value={formData.company}
-                    onChange={(e) => handleInputChange('company', e.target.value)}
-                    options={[{ value: "BSI", label: "BSI" }]} 
-                    placeholder="BSI"
-                  />
-                </FormField>
-                
-                <FormField label='"E" icon' required>
-                  <FormSelect 
-                    value={formData.eIcon}
-                    onChange={(e) => handleInputChange('eIcon', e.target.value)}
-                    options={[
-                      { value: "Yes", label: "Yes" },
-                      { value: "No", label: "No" }
-                    ]} 
-                    placeholder="Yes"
-                  />
-                </FormField>
-                
-                <FormField label="Location escorted to" required>
-                  <FormInput 
-                    value={formData.locationEscortedTo}
-                    onChange={(e) => handleInputChange('locationEscortedTo', e.target.value)}
-                    name="locationEscortedTo" 
-                    placeholder="Enter" 
-                  />
-                </FormField>
-              </div>
+              {!escortCollapsed && (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                  <FormField label="First Name" required>
+                    <FormInput 
+                      value={formData.firstName}
+                      onChange={(e) => handleInputChange('firstName', e.target.value)}
+                      name="firstName" 
+                      placeholder="Rachit" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Last Name" required>
+                    <FormInput 
+                      value={formData.lastName}
+                      onChange={(e) => handleInputChange('lastName', e.target.value)}
+                      name="lastName" 
+                      placeholder="Jain" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Badge Number" required>
+                    <FormInput 
+                      value={formData.badgeNumber}
+                      onChange={(e) => handleInputChange('badgeNumber', e.target.value)}
+                      name="badgeNumber" 
+                      placeholder="12346578" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Date of Birth" required>
+                    <DatePickerInput 
+                      value={formData.dob}
+                      onChange={(value) => handleInputChange('dob', value)}
+                      name="dob" 
+                      placeholder="12/08/1997" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Phone" required>
+                    <PhoneInput 
+                      value={formData.phone}
+                      onChange={(value) => handleInputChange('phone', value)}
+                      name="phone" 
+                      placeholder="7550169223" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Email" required>
+                    <FormInput 
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      name="email" 
+                      placeholder="rjain@lawa.org" 
+                      type="email" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Company" required>
+                    <FormSelect 
+                      value={formData.company}
+                      onChange={(e) => handleInputChange('company', e.target.value)}
+                      options={[{ value: "BSI", label: "BSI" }]} 
+                      placeholder="BSI"
+                    />
+                  </FormField>
+                  
+                  <FormField label='"E" icon' required>
+                    <FormSelect 
+                      value={formData.eIcon}
+                      onChange={(e) => handleInputChange('eIcon', e.target.value)}
+                      options={[
+                        { value: "Yes", label: "Yes" },
+                        { value: "No", label: "No" }
+                      ]} 
+                      placeholder="Yes"
+                    />
+                  </FormField>
+                  
+                  <FormField label="Location escorted to" required>
+                    <FormInput 
+                      value={formData.locationEscortedTo}
+                      onChange={(e) => handleInputChange('locationEscortedTo', e.target.value)}
+                      name="locationEscortedTo" 
+                      placeholder="Enter" 
+                    />
+                  </FormField>
+                </div>
+              )}
             </div>
+
+            {/* New Escort Form */}
+            {showNewEscortForm && (
+              <div className="bg-white p-4 rounded-lg shadow-sm">
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-[#663399] font-medium text-lg">New Escort Information</h2>
+                  <button
+                    type="button"
+                    onClick={() => setShowNewEscortForm(false)}
+                    className="text-red-500 text-sm"
+                  >
+                    Remove
+                  </button>
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                  <FormField label="First Name" required>
+                    <FormInput name="newFirstName" placeholder="First Name" />
+                  </FormField>
+                  
+                  <FormField label="Last Name" required>
+                    <FormInput name="newLastName" placeholder="Last Name" />
+                  </FormField>
+                  
+                  <FormField label="Badge Number" required>
+                    <FormInput name="newBadgeNumber" placeholder="Badge Number" />
+                  </FormField>
+                  
+                  <FormField label="Date of Birth" required>
+                    <DatePickerInput name="newDob" placeholder="MM/DD/YYYY" />
+                  </FormField>
+                  
+                  <FormField label="Phone" required>
+                    <PhoneInput name="newPhone" placeholder="Phone Number" />
+                  </FormField>
+                  
+                  <FormField label="Email" required>
+                    <FormInput name="newEmail" placeholder="Email" type="email" />
+                  </FormField>
+                  
+                  <FormField label="Company" required>
+                    <FormSelect options={[]} placeholder="Select company" />
+                  </FormField>
+                  
+                  <FormField label='"E" icon' required>
+                    <FormSelect 
+                      options={[
+                        { value: "Yes", label: "Yes" },
+                        { value: "No", label: "No" }
+                      ]} 
+                      placeholder="Select"
+                    />
+                  </FormField>
+                  
+                  <FormField label="Location escorted to" required>
+                    <FormInput name="newLocationEscortedTo" placeholder="Enter" />
+                  </FormField>
+                </div>
+              </div>
+            )}
 
             {/* Person Being Escorted Information */}
             <div className="bg-white p-4 rounded-lg shadow-sm">
@@ -197,112 +287,191 @@ export const EscortApplicationForm: React.FC = () => {
               </div>
               
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-[#663399] font-medium text-lg">Person Being Escorted</h3>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-[#663399] font-medium text-lg">Person Being Escorted</h3>
+                  {personCollapsed && (
+                    <button
+                      type="button"
+                      onClick={() => setPersonCollapsed(false)}
+                      className="text-[#663399]"
+                    >
+                      {personCollapsed ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+                    </button>
+                  )}
+                </div>
                 <button
                   type="button"
+                  onClick={handleAddPerson}
                   className="bg-[#663399] text-white rounded-md px-3 py-1 text-sm font-medium hover:bg-[#4A2272]"
                 >
                   Add Person
                 </button>
               </div>
               
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-                <FormField label="First Name" required>
-                  <FormInput 
-                    value={formData.personFirstName}
-                    onChange={(e) => handleInputChange('personFirstName', e.target.value)}
-                    name="personFirstName" 
-                    placeholder="First Name" 
-                  />
-                </FormField>
-                
-                <FormField label="Last Name" required>
-                  <FormInput 
-                    value={formData.personLastName}
-                    onChange={(e) => handleInputChange('personLastName', e.target.value)}
-                    name="personLastName" 
-                    placeholder="Last Name" 
-                  />
-                </FormField>
-                
-                <FormField label="Date of Birth" required>
-                  <DatePickerInput 
-                    value={formData.personDob}
-                    onChange={(value) => handleInputChange('personDob', value)}
-                    name="personDob" 
-                    placeholder="MM/DD/YYYY" 
-                  />
-                </FormField>
-                
-                <FormField label="Phone" required>
-                  <PhoneInput 
-                    value={formData.personPhone}
-                    onChange={(value) => handleInputChange('personPhone', value)}
-                    name="personPhone" 
-                    placeholder="12324567890" 
-                  />
-                </FormField>
-                
-                <FormField label="Email" required>
-                  <FormInput 
-                    value={formData.personEmail}
-                    onChange={(e) => handleInputChange('personEmail', e.target.value)}
-                    name="personEmail" 
-                    placeholder="abc@mail.com" 
-                    type="email" 
-                  />
-                </FormField>
-                
-                <FormField label="Reason for visit" required>
-                  <FormInput 
-                    value={formData.reasonForVisit}
-                    onChange={(e) => handleInputChange('reasonForVisit', e.target.value)}
-                    name="reasonForVisit" 
-                    placeholder="" 
-                  />
-                </FormField>
-                
-                <FormField label="Company" required>
-                  <FormSelect 
-                    value={formData.personCompany}
-                    onChange={(e) => handleInputChange('personCompany', e.target.value)}
-                    options={[]} 
-                    placeholder="Select company"
-                  />
-                </FormField>
-                
-                <FormField label="Type of ID" required>
-                  <FormSelect 
-                    value={formData.typeOfId}
-                    onChange={(e) => handleInputChange('typeOfId', e.target.value)}
-                    options={[]} 
-                    placeholder="Select ID"
-                  />
-                </FormField>
-                
-                <FormField label="ID #" required>
-                  <FormInput 
-                    value={formData.idNumber}
-                    onChange={(e) => handleInputChange('idNumber', e.target.value)}
-                    name="idNumber" 
-                    placeholder="12312434532" 
-                  />
-                </FormField>
-                
-                <div className="lg:col-span-3">
-                  <FormField label="Company notes">
-                    <textarea
-                      value={formData.companyNotes}
-                      onChange={(e) => handleInputChange('companyNotes', e.target.value)}
-                      name="companyNotes"
-                      rows={3}
-                      className="w-full p-2 bg-[#E6DFEC] border-0 rounded-md text-sm"
-                      placeholder="Enter"
-                    ></textarea>
+              {!personCollapsed && (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                  <FormField label="First Name" required>
+                    <FormInput 
+                      value={formData.personFirstName}
+                      onChange={(e) => handleInputChange('personFirstName', e.target.value)}
+                      name="personFirstName" 
+                      placeholder="First Name" 
+                    />
                   </FormField>
+                  
+                  <FormField label="Last Name" required>
+                    <FormInput 
+                      value={formData.personLastName}
+                      onChange={(e) => handleInputChange('personLastName', e.target.value)}
+                      name="personLastName" 
+                      placeholder="Last Name" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Date of Birth" required>
+                    <DatePickerInput 
+                      value={formData.personDob}
+                      onChange={(value) => handleInputChange('personDob', value)}
+                      name="personDob" 
+                      placeholder="MM/DD/YYYY" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Phone" required>
+                    <PhoneInput 
+                      value={formData.personPhone}
+                      onChange={(value) => handleInputChange('personPhone', value)}
+                      name="personPhone" 
+                      placeholder="12324567890" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Email" required>
+                    <FormInput 
+                      value={formData.personEmail}
+                      onChange={(e) => handleInputChange('personEmail', e.target.value)}
+                      name="personEmail" 
+                      placeholder="abc@mail.com" 
+                      type="email" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Reason for visit" required>
+                    <FormInput 
+                      value={formData.reasonForVisit}
+                      onChange={(e) => handleInputChange('reasonForVisit', e.target.value)}
+                      name="reasonForVisit" 
+                      placeholder="" 
+                    />
+                  </FormField>
+                  
+                  <FormField label="Company" required>
+                    <FormSelect 
+                      value={formData.personCompany}
+                      onChange={(e) => handleInputChange('personCompany', e.target.value)}
+                      options={[]} 
+                      placeholder="Select company"
+                    />
+                  </FormField>
+                  
+                  <FormField label="Type of ID" required>
+                    <FormSelect 
+                      value={formData.typeOfId}
+                      onChange={(e) => handleInputChange('typeOfId', e.target.value)}
+                      options={[]} 
+                      placeholder="Select ID"
+                    />
+                  </FormField>
+                  
+                  <FormField label="ID #" required>
+                    <FormInput 
+                      value={formData.idNumber}
+                      onChange={(e) => handleInputChange('idNumber', e.target.value)}
+                      name="idNumber" 
+                      placeholder="12312434532" 
+                    />
+                  </FormField>
+                  
+                  <div className="lg:col-span-3">
+                    <FormField label="Company notes">
+                      <textarea
+                        value={formData.companyNotes}
+                        onChange={(e) => handleInputChange('companyNotes', e.target.value)}
+                        name="companyNotes"
+                        rows={3}
+                        className="w-full p-2 bg-[#E6DFEC] border-0 rounded-md text-sm"
+                        placeholder="Enter"
+                      ></textarea>
+                    </FormField>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* New Person Form */}
+            {showNewPersonForm && (
+              <div className="bg-white p-4 rounded-lg shadow-sm">
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-[#663399] font-medium text-lg">New Person Being Escorted</h2>
+                  <button
+                    type="button"
+                    onClick={() => setShowNewPersonForm(false)}
+                    className="text-red-500 text-sm"
+                  >
+                    Remove
+                  </button>
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                  <FormField label="First Name" required>
+                    <FormInput name="newPersonFirstName" placeholder="First Name" />
+                  </FormField>
+                  
+                  <FormField label="Last Name" required>
+                    <FormInput name="newPersonLastName" placeholder="Last Name" />
+                  </FormField>
+                  
+                  <FormField label="Date of Birth" required>
+                    <DatePickerInput name="newPersonDob" placeholder="MM/DD/YYYY" />
+                  </FormField>
+                  
+                  <FormField label="Phone" required>
+                    <PhoneInput name="newPersonPhone" placeholder="Phone Number" />
+                  </FormField>
+                  
+                  <FormField label="Email" required>
+                    <FormInput name="newPersonEmail" placeholder="Email" type="email" />
+                  </FormField>
+                  
+                  <FormField label="Reason for visit" required>
+                    <FormInput name="newReasonForVisit" placeholder="Reason" />
+                  </FormField>
+                  
+                  <FormField label="Company" required>
+                    <FormSelect options={[]} placeholder="Select company" />
+                  </FormField>
+                  
+                  <FormField label="Type of ID" required>
+                    <FormSelect options={[]} placeholder="Select ID" />
+                  </FormField>
+                  
+                  <FormField label="ID #" required>
+                    <FormInput name="newIdNumber" placeholder="ID Number" />
+                  </FormField>
+                  
+                  <div className="lg:col-span-3">
+                    <FormField label="Company notes">
+                      <textarea
+                        name="newCompanyNotes"
+                        rows={3}
+                        className="w-full p-2 bg-[#E6DFEC] border-0 rounded-md text-sm"
+                        placeholder="Enter"
+                      ></textarea>
+                    </FormField>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
           
           <div className="mt-8">
