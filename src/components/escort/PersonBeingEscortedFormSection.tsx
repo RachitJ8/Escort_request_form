@@ -227,7 +227,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
               <FormInput 
                 name="newPersonFirstName" 
                 placeholder="First Name"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -235,7 +235,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
               <FormInput 
                 name="newPersonLastName" 
                 placeholder="Last Name"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -243,7 +243,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
               <DatePickerInput 
                 name="newPersonDob" 
                 placeholder="MM/DD/YYYY"
-                onChange={() => {}} 
+                onChange={(value) => {}} 
               />
             </FormFieldWrapper>
             
@@ -251,7 +251,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
               <PhoneInput 
                 name="newPersonPhone" 
                 placeholder="Phone Number"
-                onChange={() => {}} 
+                onChange={(value) => {}} 
               />
             </FormFieldWrapper>
             
@@ -260,7 +260,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
                 name="newPersonEmail" 
                 placeholder="Email" 
                 type="email"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -268,7 +268,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
               <FormInput 
                 name="newReasonForVisit" 
                 placeholder="Reason"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -276,7 +276,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
               <FormSelect 
                 options={[]} 
                 placeholder="Select company"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -284,7 +284,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
               <FormSelect 
                 options={[]} 
                 placeholder="Select ID"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -292,7 +292,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
               <FormInput 
                 name="newIdNumber" 
                 placeholder="ID Number"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -303,7 +303,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
                   rows={3}
                   className="w-full p-2 bg-[#E6DFEC] border-0 rounded-md text-sm"
                   placeholder="Enter"
-                  onChange={() => {}} 
+                  onChange={(e) => {}} 
                 ></textarea>
               </FormFieldWrapper>
             </div>

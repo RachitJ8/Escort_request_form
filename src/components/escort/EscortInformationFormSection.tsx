@@ -206,7 +206,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
               <FormInput 
                 name="newFirstName" 
                 placeholder="First Name"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -214,7 +214,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
               <FormInput 
                 name="newLastName" 
                 placeholder="Last Name"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -222,7 +222,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
               <FormInput 
                 name="newBadgeNumber" 
                 placeholder="Badge Number"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -230,7 +230,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
               <DatePickerInput 
                 name="newDob" 
                 placeholder="MM/DD/YYYY"
-                onChange={() => {}} 
+                onChange={(value) => {}} 
               />
             </FormFieldWrapper>
             
@@ -238,7 +238,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
               <PhoneInput 
                 name="newPhone" 
                 placeholder="Phone Number"
-                onChange={() => {}} 
+                onChange={(value) => {}} 
               />
             </FormFieldWrapper>
             
@@ -247,7 +247,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
                 name="newEmail" 
                 placeholder="Email" 
                 type="email"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -255,7 +255,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
               <FormSelect 
                 options={[]} 
                 placeholder="Select company"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -266,7 +266,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
                   { value: "No", label: "No" }
                 ]} 
                 placeholder="Select"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
             
@@ -274,7 +274,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
               <FormInput 
                 name="newLocationEscortedTo" 
                 placeholder="Enter"
-                onChange={() => {}} 
+                onChange={(e) => {}} 
               />
             </FormFieldWrapper>
           </div>
