@@ -1,0 +1,218 @@
+
+import React from "react";
+import { FormInput } from "./FormInput";
+import { FormSelect } from "./FormSelect";
+import { DatePickerInput } from "./DatePickerInput";
+import { PhoneInput } from "./PhoneInput";
+import { FormFieldWrapper } from "./FormFieldWrapper";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
+interface EscortData {
+  firstName: string;
+  lastName: string;
+  badgeNumber: string;
+  dob: string;
+  phone: string;
+  email: string;
+  company: string;
+  eIcon: string;
+  locationEscortedTo: string;
+}
+
+interface EscortInformationFormSectionProps {
+  formData: EscortData;
+  onInputChange: (field: string, value: string) => void;
+  escortCollapsed: boolean;
+  setEscortCollapsed: (collapsed: boolean) => void;
+  showNewEscortForm: boolean;
+  onAddEscort: () => void;
+  onRemoveNewEscort: () => void;
+}
+
+export const EscortInformationFormSection: React.FC<EscortInformationFormSectionProps> = ({
+  formData,
+  onInputChange,
+  escortCollapsed,
+  setEscortCollapsed,
+  showNewEscortForm,
+  onAddEscort,
+  onRemoveNewEscort
+}) => {
+  return (
+    <>
+      {/* Escort Information Section */}
+      <div className="bg-white p-4 rounded-lg shadow-sm">
+        <div className="flex justify-between items-center mb-4">
+          <div className="flex items-center gap-2">
+            <h2 className="text-[#663399] font-medium text-lg">Escort Information</h2>
+            {escortCollapsed && (
+              <button
+                type="button"
+                onClick={() => setEscortCollapsed(false)}
+                className="text-[#663399]"
+              >
+                {escortCollapsed ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+              </button>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={onAddEscort}
+            className="bg-[#663399] text-white rounded-md px-3 py-1 text-sm font-medium hover:bg-[#4A2272]"
+          >
+            Add Escort
+          </button>
+        </div>
+        
+        {!escortCollapsed && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+            <FormFieldWrapper label="First Name" required>
+              <FormInput 
+                value={formData.firstName}
+                onChange={(e) => onInputChange('firstName', e.target.value)}
+                name="firstName" 
+                placeholder="Rachit" 
+              />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Last Name" required>
+              <FormInput 
+                value={formData.lastName}
+                onChange={(e) => onInputChange('lastName', e.target.value)}
+                name="lastName" 
+                placeholder="Jain" 
+              />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Badge Number" required>
+              <FormInput 
+                value={formData.badgeNumber}
+                onChange={(e) => onInputChange('badgeNumber', e.target.value)}
+                name="badgeNumber" 
+                placeholder="12346578" 
+              />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Date of Birth" required>
+              <DatePickerInput 
+                value={formData.dob}
+                onChange={(value) => onInputChange('dob', value)}
+                name="dob" 
+                placeholder="12/08/1997" 
+              />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Phone" required>
+              <PhoneInput 
+                value={formData.phone}
+                onChange={(value) => onInputChange('phone', value)}
+                name="phone" 
+                placeholder="7550169223" 
+              />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Email" required>
+              <FormInput 
+                value={formData.email}
+                onChange={(e) => onInputChange('email', e.target.value)}
+                name="email" 
+                placeholder="rjain@lawa.org" 
+                type="email" 
+              />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Company" required>
+              <FormSelect 
+                value={formData.company}
+                onChange={(e) => onInputChange('company', e.target.value)}
+                options={[{ value: "BSI", label: "BSI" }]} 
+                placeholder="BSI"
+              />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label='"E" icon' required>
+              <FormSelect 
+                value={formData.eIcon}
+                onChange={(e) => onInputChange('eIcon', e.target.value)}
+                options={[
+                  { value: "Yes", label: "Yes" },
+                  { value: "No", label: "No" }
+                ]} 
+                placeholder="Yes"
+              />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Location escorted to" required>
+              <FormInput 
+                value={formData.locationEscortedTo}
+                onChange={(e) => onInputChange('locationEscortedTo', e.target.value)}
+                name="locationEscortedTo" 
+                placeholder="Enter" 
+              />
+            </FormFieldWrapper>
+          </div>
+        )}
+      </div>
+
+      {/* New Escort Form */}
+      {showNewEscortForm && (
+        <div className="bg-white p-4 rounded-lg shadow-sm">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-[#663399] font-medium text-lg">New Escort Information</h2>
+            <button
+              type="button"
+              onClick={onRemoveNewEscort}
+              className="text-red-500 text-sm"
+            >
+              Remove
+            </button>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+            <FormFieldWrapper label="First Name" required>
+              <FormInput name="newFirstName" placeholder="First Name" />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Last Name" required>
+              <FormInput name="newLastName" placeholder="Last Name" />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Badge Number" required>
+              <FormInput name="newBadgeNumber" placeholder="Badge Number" />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Date of Birth" required>
+              <DatePickerInput name="newDob" placeholder="MM/DD/YYYY" />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Phone" required>
+              <PhoneInput name="newPhone" placeholder="Phone Number" />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Email" required>
+              <FormInput name="newEmail" placeholder="Email" type="email" />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Company" required>
+              <FormSelect options={[]} placeholder="Select company" />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label='"E" icon' required>
+              <FormSelect 
+                options={[
+                  { value: "Yes", label: "Yes" },
+                  { value: "No", label: "No" }
+                ]} 
+                placeholder="Select"
+              />
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Location escorted to" required>
+              <FormInput name="newLocationEscortedTo" placeholder="Enter" />
+            </FormFieldWrapper>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
