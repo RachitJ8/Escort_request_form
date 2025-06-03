@@ -5,7 +5,7 @@ import { FormSelect } from "./FormSelect";
 import { DatePickerInput } from "./DatePickerInput";
 import { PhoneInput } from "./PhoneInput";
 import { FormFieldWrapper } from "./FormFieldWrapper";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, X } from "lucide-react";
 
 interface EscortData {
   firstName: string;
@@ -38,6 +38,17 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
   onAddEscort,
   onRemoveNewEscort
 }) => {
+  // Check if main section is completely filled
+  const isMainSectionComplete = formData.firstName && 
+    formData.lastName && 
+    formData.badgeNumber && 
+    formData.dob && 
+    formData.phone && 
+    formData.email && 
+    formData.company && 
+    formData.eIcon && 
+    formData.locationEscortedTo;
+
   return (
     <>
       {/* Escort Information Section */}
@@ -51,20 +62,42 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
                 onClick={() => setEscortCollapsed(false)}
                 className="text-[#663399]"
               >
-                {escortCollapsed ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+                <ChevronDown size={20} />
               </button>
             )}
           </div>
           <button
             type="button"
             onClick={onAddEscort}
-            className="bg-[#663399] text-white rounded-md px-3 py-1 text-sm font-medium hover:bg-[#4A2272]"
+            disabled={!isMainSectionComplete}
+            className="bg-[#663399] text-white rounded-md px-3 py-1 text-sm font-medium hover:bg-[#4A2272] disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             Add Escort
           </button>
         </div>
         
-        {!escortCollapsed && (
+        {escortCollapsed ? (
+          // Collapsed view showing only key information
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+            <FormFieldWrapper label="Name">
+              <div className="p-2 bg-gray-100 rounded-md text-sm">
+                {formData.firstName} {formData.lastName}
+              </div>
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Email">
+              <div className="p-2 bg-gray-100 rounded-md text-sm">
+                {formData.email}
+              </div>
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Badge Number">
+              <div className="p-2 bg-gray-100 rounded-md text-sm">
+                {formData.badgeNumber}
+              </div>
+            </FormFieldWrapper>
+          </div>
+        ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             <FormFieldWrapper label="First Name" required>
               <FormInput 
@@ -162,9 +195,9 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
             <button
               type="button"
               onClick={onRemoveNewEscort}
-              className="text-red-500 text-sm"
+              className="text-red-500 hover:text-red-700"
             >
-              Remove
+              <X size={20} />
             </button>
           </div>
           

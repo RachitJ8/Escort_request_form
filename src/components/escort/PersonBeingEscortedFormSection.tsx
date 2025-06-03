@@ -5,7 +5,7 @@ import { FormSelect } from "./FormSelect";
 import { DatePickerInput } from "./DatePickerInput";
 import { PhoneInput } from "./PhoneInput";
 import { FormFieldWrapper } from "./FormFieldWrapper";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, X } from "lucide-react";
 
 interface PersonData {
   personFirstName: string;
@@ -39,6 +39,17 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
   onAddPerson,
   onRemoveNewPerson
 }) => {
+  // Check if main section is completely filled
+  const isMainSectionComplete = formData.personFirstName && 
+    formData.personLastName && 
+    formData.personDob && 
+    formData.personPhone && 
+    formData.personEmail && 
+    formData.reasonForVisit && 
+    formData.personCompany && 
+    formData.typeOfId && 
+    formData.idNumber;
+
   return (
     <>
       {/* Person Being Escorted Information */}
@@ -62,20 +73,42 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
                 onClick={() => setPersonCollapsed(false)}
                 className="text-[#663399]"
               >
-                {personCollapsed ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+                <ChevronDown size={20} />
               </button>
             )}
           </div>
           <button
             type="button"
             onClick={onAddPerson}
-            className="bg-[#663399] text-white rounded-md px-3 py-1 text-sm font-medium hover:bg-[#4A2272]"
+            disabled={!isMainSectionComplete}
+            className="bg-[#663399] text-white rounded-md px-3 py-1 text-sm font-medium hover:bg-[#4A2272] disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             Add Person
           </button>
         </div>
         
-        {!personCollapsed && (
+        {personCollapsed ? (
+          // Collapsed view showing only key information
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+            <FormFieldWrapper label="Name">
+              <div className="p-2 bg-gray-100 rounded-md text-sm">
+                {formData.personFirstName} {formData.personLastName}
+              </div>
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="Email">
+              <div className="p-2 bg-gray-100 rounded-md text-sm">
+                {formData.personEmail}
+              </div>
+            </FormFieldWrapper>
+            
+            <FormFieldWrapper label="ID Type">
+              <div className="p-2 bg-gray-100 rounded-md text-sm">
+                {formData.typeOfId}
+              </div>
+            </FormFieldWrapper>
+          </div>
+        ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             <FormFieldWrapper label="First Name" required>
               <FormInput 
@@ -183,9 +216,9 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
             <button
               type="button"
               onClick={onRemoveNewPerson}
-              className="text-red-500 text-sm"
+              className="text-red-500 hover:text-red-700"
             >
-              Remove
+              <X size={20} />
             </button>
           </div>
           
