@@ -6,6 +6,9 @@ import { PhoneInput } from "./PhoneInput";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { ChevronDown, ChevronUp, X } from "lucide-react";
 import { EscortRequestApprovalDialog } from "./EscortRequestApprovalDialog";
+import { DenyListAlertDialog } from "./DenyListAlertDialog";
+import { StopListAlertDialog } from "./StopListAlertDialog";
+import { BadgedEmployeeAlertDialog } from "./BadgedEmployeeAlertDialog";
 
 interface PersonData {
   personFirstName: string;
@@ -40,6 +43,9 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
   onRemoveNewPerson
 }) => {
   const [showApprovalDialog, setShowApprovalDialog] = useState(false);
+  const [showDenyListDialog, setShowDenyListDialog] = useState(false);
+  const [showStopListDialog, setShowStopListDialog] = useState(false);
+  const [showBadgedEmployeeDialog, setShowBadgedEmployeeDialog] = useState(false);
 
   // Check if main section is completely filled
   const isMainSectionComplete = formData.personFirstName && 
@@ -52,12 +58,27 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
     formData.typeOfId && 
     formData.idNumber;
 
-  // Simulate checking if person has been escorted more than 3 times in 90 days
+  // Simulate checking different scenarios based on person name
   const requiresApproval = formData.personFirstName && formData.personLastName && 
     (formData.personFirstName.toLowerCase() === 'rachit' && formData.personLastName.toLowerCase() === 'jain');
+  
+  const isDenyList = formData.personFirstName && formData.personLastName && 
+    (formData.personFirstName.toLowerCase() === 'deny' && formData.personLastName.toLowerCase() === 'person');
+  
+  const isStopList = formData.personFirstName && formData.personLastName && 
+    (formData.personFirstName.toLowerCase() === 'stop' && formData.personLastName.toLowerCase() === 'person');
+  
+  const isBadgedEmployee = formData.personFirstName && formData.personLastName && 
+    (formData.personFirstName.toLowerCase() === 'badge' && formData.personLastName.toLowerCase() === 'employee');
 
   const handleAddPerson = () => {
-    if (requiresApproval) {
+    if (isDenyList) {
+      setShowDenyListDialog(true);
+    } else if (isStopList) {
+      setShowStopListDialog(true);
+    } else if (isBadgedEmployee) {
+      setShowBadgedEmployeeDialog(true);
+    } else if (requiresApproval) {
       setShowApprovalDialog(true);
     } else {
       onAddPerson();
@@ -331,11 +352,29 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
         </div>
       )}
 
-      {/* Approval Dialog */}
+      {/* Alert Dialogs */}
       <EscortRequestApprovalDialog
         isOpen={showApprovalDialog}
         onClose={() => setShowApprovalDialog(false)}
         onProceed={handleApprovalProceed}
+        personName={`${formData.personFirstName} ${formData.personLastName}`}
+      />
+      
+      <DenyListAlertDialog
+        isOpen={showDenyListDialog}
+        onClose={() => setShowDenyListDialog(false)}
+        personName={`${formData.personFirstName} ${formData.personLastName}`}
+      />
+      
+      <StopListAlertDialog
+        isOpen={showStopListDialog}
+        onClose={() => setShowStopListDialog(false)}
+        personName={`${formData.personFirstName} ${formData.personLastName}`}
+      />
+      
+      <BadgedEmployeeAlertDialog
+        isOpen={showBadgedEmployeeDialog}
+        onClose={() => setShowBadgedEmployeeDialog(false)}
         personName={`${formData.personFirstName} ${formData.personLastName}`}
       />
     </>

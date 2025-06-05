@@ -1,4 +1,3 @@
-
 import React from "react";
 import { FormInput } from "./FormInput";
 import { FormSelect } from "./FormSelect";
@@ -77,7 +76,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
         </div>
         
         {escortCollapsed ? (
-          // Collapsed view showing only key information
+          
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             <FormFieldWrapper label="Name">
               <div className="p-2 bg-gray-100 rounded-md text-sm">
@@ -98,6 +97,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
             </FormFieldWrapper>
           </div>
         ) : (
+          
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             <FormFieldWrapper label="First Name" required>
               <FormInput 
