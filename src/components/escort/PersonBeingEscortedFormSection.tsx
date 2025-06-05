@@ -1,11 +1,11 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { FormInput } from "./FormInput";
 import { FormSelect } from "./FormSelect";
 import { DatePickerInput } from "./DatePickerInput";
 import { PhoneInput } from "./PhoneInput";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { ChevronDown, ChevronUp, X } from "lucide-react";
+import { EscortRequestApprovalDialog } from "./EscortRequestApprovalDialog";
 
 interface PersonData {
   personFirstName: string;
@@ -39,6 +39,8 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
   onAddPerson,
   onRemoveNewPerson
 }) => {
+  const [showApprovalDialog, setShowApprovalDialog] = useState(false);
+
   // Check if main section is completely filled
   const isMainSectionComplete = formData.personFirstName && 
     formData.personLastName && 
@@ -49,6 +51,24 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
     formData.personCompany && 
     formData.typeOfId && 
     formData.idNumber;
+
+  // Simulate checking if person has been escorted more than 3 times in 90 days
+  const requiresApproval = formData.personFirstName && formData.personLastName && 
+    (formData.personFirstName.toLowerCase() === 'rachit' && formData.personLastName.toLowerCase() === 'jain');
+
+  const handleAddPerson = () => {
+    if (requiresApproval) {
+      setShowApprovalDialog(true);
+    } else {
+      onAddPerson();
+    }
+  };
+
+  const handleApprovalProceed = (reason: string) => {
+    console.log("Escort reason:", reason);
+    setShowApprovalDialog(false);
+    onAddPerson();
+  };
 
   return (
     <>
@@ -79,7 +99,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
           </div>
           <button
             type="button"
-            onClick={onAddPerson}
+            onClick={handleAddPerson}
             disabled={!isMainSectionComplete}
             className="bg-[#663399] text-white rounded-md px-3 py-1 text-sm font-medium hover:bg-[#4A2272] disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
@@ -310,6 +330,14 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
           </div>
         </div>
       )}
+
+      {/* Approval Dialog */}
+      <EscortRequestApprovalDialog
+        isOpen={showApprovalDialog}
+        onClose={() => setShowApprovalDialog(false)}
+        onProceed={handleApprovalProceed}
+        personName={`${formData.personFirstName} ${formData.personLastName}`}
+      />
     </>
   );
 };
