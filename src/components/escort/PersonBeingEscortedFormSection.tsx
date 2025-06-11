@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { FormInput } from "./FormInput";
 import { FormSelect } from "./FormSelect";
@@ -76,6 +77,7 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
     (formData.personFirstName.toLowerCase() === 'badge' && formData.personLastName.toLowerCase() === 'employee');
 
   const handleAddPerson = () => {
+    // Check if escort doesn't have privilege (E icon is "No")
     if (escortEIcon === "No") {
       setShowEscortPrivilegeDialog(true);
       return;

@@ -93,6 +93,7 @@ export const EscortApplicationForm: React.FC = () => {
               showNewPersonForm={showNewPersonForm}
               onAddPerson={handleAddPerson}
               onRemoveNewPerson={handleRemoveNewPerson}
+              escortEIcon={formData.eIcon}
             />
           </div>
           
