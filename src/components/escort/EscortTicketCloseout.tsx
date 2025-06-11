@@ -1,13 +1,14 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import { EscortCloseoutConfirmDialog } from "./EscortCloseoutConfirmDialog";
 import { EscortSessionSuccessPage } from "./EscortSessionSuccessPage";
 
 export const EscortTicketCloseout: React.FC = () => {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [showSuccessPage, setShowSuccessPage] = useState(false);
+  const [escortedPartyLeft, setEscortedPartyLeft] = useState(false);
 
   const handleCompleteSession = () => {
     setShowConfirmDialog(true);
@@ -33,7 +34,9 @@ export const EscortTicketCloseout: React.FC = () => {
           {/* Green checkmark icon */}
           <div className="w-16 h-16 bg-[#0C6B2E] rounded-full flex items-center justify-center mb-6">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center">
-              <Check className="w-6 h-6 text-[#0C6B2E]" strokeWidth={3} />
+              <svg className="w-6 h-6 text-[#0C6B2E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
             </div>
           </div>
 
@@ -70,16 +73,25 @@ export const EscortTicketCloseout: React.FC = () => {
             Note: Closing the Escort Ticket and Escort Handoff are the responsibilities of the Escort.
           </p>
           
-          <div className="flex items-center gap-2 mb-8">
-            <div className="w-5 h-5 bg-[#663399] rounded flex items-center justify-center">
-              <Check className="w-3 h-3 text-white" strokeWidth={3} />
-            </div>
-            <span className="text-sm text-gray-700">Escorted party has left the airfield</span>
+          <div className="flex items-center gap-3 mb-8">
+            <Checkbox 
+              id="escorted-party-left"
+              checked={escortedPartyLeft}
+              onCheckedChange={(checked) => setEscortedPartyLeft(checked === true)}
+              className="data-[state=checked]:bg-[#663399] data-[state=checked]:border-[#663399]"
+            />
+            <label 
+              htmlFor="escorted-party-left" 
+              className="text-sm text-gray-700 cursor-pointer"
+            >
+              Escorted party has left the airfield
+            </label>
           </div>
           
           <Button 
             onClick={handleCompleteSession}
-            className="w-full py-3 bg-[#663399] text-white rounded-md hover:bg-[#4A2272] transition-colors font-medium"
+            disabled={!escortedPartyLeft}
+            className="w-full py-3 bg-[#663399] text-white rounded-md hover:bg-[#4A2272] transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             Complete Session
           </Button>
