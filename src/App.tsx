@@ -10,6 +10,7 @@ import SuccessPage from "./pages/SuccessPage";
 import LoginPage from "./pages/LoginPage";
 import FormSelectPage from "./pages/FormSelectPage";
 import EscortApplicationPage from "./pages/EscortApplicationPage";
+import EscortCloseoutPage from "./pages/EscortCloseoutPage";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/login" element={<LoginPage />} />
           <Route path="/form-select" element={<FormSelectPage />} />
           <Route path="/escort-application" element={<EscortApplicationPage />} />
+          <Route path="/escort-closeout" element={<EscortCloseoutPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

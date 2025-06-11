@@ -9,6 +9,7 @@ import { EscortRequestApprovalDialog } from "./EscortRequestApprovalDialog";
 import { DenyListAlertDialog } from "./DenyListAlertDialog";
 import { StopListAlertDialog } from "./StopListAlertDialog";
 import { BadgedEmployeeAlertDialog } from "./BadgedEmployeeAlertDialog";
+import { EscortPrivilegeAlertDialog } from "./EscortPrivilegeAlertDialog";
 
 interface PersonData {
   personFirstName: string;
@@ -31,6 +32,7 @@ interface PersonBeingEscortedFormSectionProps {
   showNewPersonForm: boolean;
   onAddPerson: () => void;
   onRemoveNewPerson: () => void;
+  escortEIcon?: string;
 }
 
 export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSectionProps> = ({
@@ -40,12 +42,14 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
   setPersonCollapsed,
   showNewPersonForm,
   onAddPerson,
-  onRemoveNewPerson
+  onRemoveNewPerson,
+  escortEIcon = "Yes"
 }) => {
   const [showApprovalDialog, setShowApprovalDialog] = useState(false);
   const [showDenyListDialog, setShowDenyListDialog] = useState(false);
   const [showStopListDialog, setShowStopListDialog] = useState(false);
   const [showBadgedEmployeeDialog, setShowBadgedEmployeeDialog] = useState(false);
+  const [showEscortPrivilegeDialog, setShowEscortPrivilegeDialog] = useState(false);
 
   // Check if main section is completely filled
   const isMainSectionComplete = formData.personFirstName && 
@@ -72,6 +76,11 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
     (formData.personFirstName.toLowerCase() === 'badge' && formData.personLastName.toLowerCase() === 'employee');
 
   const handleAddPerson = () => {
+    if (escortEIcon === "No") {
+      setShowEscortPrivilegeDialog(true);
+      return;
+    }
+
     if (isDenyList) {
       setShowDenyListDialog(true);
     } else if (isStopList) {
@@ -376,6 +385,11 @@ export const PersonBeingEscortedFormSection: React.FC<PersonBeingEscortedFormSec
         isOpen={showBadgedEmployeeDialog}
         onClose={() => setShowBadgedEmployeeDialog(false)}
         personName={`${formData.personFirstName} ${formData.personLastName}`}
+      />
+      
+      <EscortPrivilegeAlertDialog
+        isOpen={showEscortPrivilegeDialog}
+        onClose={() => setShowEscortPrivilegeDialog(false)}
       />
     </>
   );

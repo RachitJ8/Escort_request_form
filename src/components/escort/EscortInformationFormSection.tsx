@@ -37,7 +37,6 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
   onAddEscort,
   onRemoveNewEscort
 }) => {
-  // Check if main section is completely filled
   const isMainSectionComplete = formData.firstName && 
     formData.lastName && 
     formData.badgeNumber && 
@@ -76,7 +75,6 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
         </div>
         
         {escortCollapsed ? (
-          
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             <FormFieldWrapper label="Name">
               <div className="p-2 bg-gray-100 rounded-md text-sm">
@@ -97,7 +95,6 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
             </FormFieldWrapper>
           </div>
         ) : (
-          
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             <FormFieldWrapper label="First Name" required>
               <FormInput 
@@ -157,7 +154,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
             <FormFieldWrapper label="Company" required>
               <FormSelect 
                 value={formData.company}
-                onChange={(e) => onInputChange('company', e.target.value)}
+                onChange={(value) => onInputChange('company', value)}
                 options={[{ value: "BSI", label: "BSI" }]} 
                 placeholder="BSI"
               />
@@ -166,7 +163,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
             <FormFieldWrapper label='"E" icon' required>
               <FormSelect 
                 value={formData.eIcon}
-                onChange={(e) => onInputChange('eIcon', e.target.value)}
+                onChange={(value) => onInputChange('eIcon', value)}
                 options={[
                   { value: "Yes", label: "Yes" },
                   { value: "No", label: "No" }
@@ -187,7 +184,6 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
         )}
       </div>
 
-      {/* New Escort Form */}
       {showNewEscortForm && (
         <div className="bg-white p-4 rounded-lg shadow-sm">
           <div className="flex justify-between items-center mb-4">
@@ -255,7 +251,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
               <FormSelect 
                 options={[]} 
                 placeholder="Select company"
-                onChange={(e) => { /* TODO: implement handler with e.target.value */ }} 
+                onChange={(value) => { /* TODO: implement handler */ }} 
               />
             </FormFieldWrapper>
             
@@ -266,7 +262,7 @@ export const EscortInformationFormSection: React.FC<EscortInformationFormSection
                   { value: "No", label: "No" }
                 ]} 
                 placeholder="Select"
-                onChange={(e) => { /* TODO: implement handler with e.target.value */ }} 
+                onChange={(value) => { /* TODO: implement handler */ }} 
               />
             </FormFieldWrapper>
             
